@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kal2", "Kal2\Kal2.csproj", "{22EE6BF6-6B25-4150-98EE-F16F7E2A6270}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22EE6BF6-6B25-4150-98EE-F16F7E2A6270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EE6BF6-6B25-4150-98EE-F16F7E2A6270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EE6BF6-6B25-4150-98EE-F16F7E2A6270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EE6BF6-6B25-4150-98EE-F16F7E2A6270}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {321DAC16-6E86-4CE0-8B0B-A9E03F748D47}
+	EndGlobalSection
+EndGlobal

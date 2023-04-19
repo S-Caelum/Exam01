@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DIAGNOSISModelStoreContainer" CdmEntityContainer="DiagnosisEntities">
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="CoordianteX" ColumnName="CoordianteX" />
+          <ScalarProperty Name="CoordinateY" ColumnName="CoordinateY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuthDatas">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.AuthData">
+        <MappingFragment StoreEntitySet="AuthData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AuthLogin" ColumnName="AuthLogin" />
+          <ScalarProperty Name="AuthPassword" ColumnName="AuthPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Divisions">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Division">
+        <MappingFragment StoreEntitySet="Division">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+          <ScalarProperty Name="AuthData" ColumnName="AuthData" />
+          <ScalarProperty Name="EmployeeRole" ColumnName="EmployeeRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+          <ScalarProperty Name="StartOperationDate" ColumnName="StartOperationDate" />
+          <ScalarProperty Name="EndOperationDate" ColumnName="EndOperationDate" />
+          <ScalarProperty Name="EquipmentArea" ColumnName="EquipmentArea" />
+          <ScalarProperty Name="EquipmentParameter" ColumnName="EquipmentParameter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentAreas">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.EquipmentArea">
+        <MappingFragment StoreEntitySet="EquipmentArea">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentDimensions">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.EquipmentDimension">
+        <MappingFragment StoreEntitySet="EquipmentDimensions">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DimensionDate" ColumnName="DimensionDate" />
+          <ScalarProperty Name="Employee" ColumnName="Employee" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+          <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentDocuments">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.EquipmentDocument">
+        <MappingFragment StoreEntitySet="EquipmentDocument">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentNames">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.EquipmentName">
+        <MappingFragment StoreEntitySet="EquipmentNames">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EquipmentName1" ColumnName="EquipmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentParameters">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.EquipmentParameter">
+        <MappingFragment StoreEntitySet="EquipmentParameters">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+          <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Organization">
+        <MappingFragment StoreEntitySet="Organizations">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Parameters">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Parameter">
+        <MappingFragment StoreEntitySet="Parameter">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="QuantitativeIndicator" ColumnName="QuantitativeIndicator" />
+          <ScalarProperty Name="UnitDimensions" ColumnName="UnitDimensions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DIAGNOSISModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DIAGNOSISModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DIAGNOSISModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DIAGNOSISModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DIAGNOSISModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DIAGNOSISModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DIAGNOSISModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DIAGNOSISModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DIAGNOSISModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DIAGNOSISModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

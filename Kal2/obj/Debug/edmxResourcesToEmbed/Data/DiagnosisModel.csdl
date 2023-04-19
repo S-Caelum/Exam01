@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DIAGNOSISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CoordianteX" Type="Double" Nullable="false" />
+    <Property Name="CoordinateY" Type="Double" Nullable="false" />
+    <NavigationProperty Name="EquipmentAreas" Relationship="Self.FK__Equipment__AreaI__6477ECF3" FromRole="Area" ToRole="EquipmentArea" />
+  </EntityType>
+  <EntityType Name="AuthData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthLogin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="AuthPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__AuthDa__5535A963" FromRole="AuthData" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DivisionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Divisi__534D60F1" FromRole="Division" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Division" Type="Int32" Nullable="false" />
+    <Property Name="Organization" Type="Int32" Nullable="false" />
+    <Property Name="AuthData" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeRole" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AuthData1" Relationship="Self.FK__Employee__AuthDa__5535A963" FromRole="Employee" ToRole="AuthData" />
+    <NavigationProperty Name="Division1" Relationship="Self.FK__Employee__Divisi__534D60F1" FromRole="Employee" ToRole="Division" />
+    <NavigationProperty Name="Organization1" Relationship="Self.FK__Employee__Organi__5441852A" FromRole="Employee" ToRole="Organizations" />
+    <NavigationProperty Name="EquipmentDimensions" Relationship="Self.FK__Equipment__Emplo__6B24EA82" FromRole="Employee" ToRole="EquipmentDimensions" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Roles" FromRole="Employee" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentName" Type="Int32" Nullable="false" />
+    <Property Name="StartOperationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndOperationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EquipmentArea" Type="Int32" Nullable="false" />
+    <Property Name="EquipmentParameter" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EquipmentName1" Relationship="Self.FK__Equipment__Equip__5EBF139D" FromRole="Equipment" ToRole="EquipmentNames" />
+    <NavigationProperty Name="EquipmentAreas" Relationship="Self.FK__Equipment__Equip__6383C8BA" FromRole="Equipment" ToRole="EquipmentArea" />
+    <NavigationProperty Name="EquipmentParameters" Relationship="Self.FK__Equipment__Equip__6754599E" FromRole="Equipment" ToRole="EquipmentParameters" />
+    <NavigationProperty Name="EquipmentDimensions" Relationship="Self.FK__Equipment__Equip__6C190EBB" FromRole="Equipment" ToRole="EquipmentDimensions" />
+    <NavigationProperty Name="EquipmentArea1" Relationship="Self.FK_Equipment_EquipmentArea" FromRole="Equipment" ToRole="EquipmentArea" />
+    <NavigationProperty Name="EquipmentParameter1" Relationship="Self.FK_Equipment_EquipmentParameters" FromRole="Equipment" ToRole="EquipmentParameters" />
+  </EntityType>
+  <EntityType Name="EquipmentArea">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+    <Property Name="AreaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK__Equipment__AreaI__6477ECF3" FromRole="EquipmentArea" ToRole="Area" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__Equip__6383C8BA" FromRole="EquipmentArea" ToRole="Equipment" />
+    <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_EquipmentArea" FromRole="EquipmentArea" ToRole="Equipment" />
+  </EntityType>
+  <EntityType Name="EquipmentDimension">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DimensionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Employee" Type="Int32" Nullable="false" />
+    <Property Name="Equipment" Type="Int32" Nullable="false" />
+    <Property Name="Parameter" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Equipment__Emplo__6B24EA82" FromRole="EquipmentDimensions" ToRole="Employee" />
+    <NavigationProperty Name="Equipment1" Relationship="Self.FK__Equipment__Equip__6C190EBB" FromRole="EquipmentDimensions" ToRole="Equipment" />
+    <NavigationProperty Name="Parameter1" Relationship="Self.FK__Equipment__Param__6D0D32F4" FromRole="EquipmentDimensions" ToRole="Parameter" />
+  </EntityType>
+  <EntityType Name="EquipmentDocument">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AssignmentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Equipment" Type="Int32" />
+  </EntityType>
+  <EntityType Name="EquipmentName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Equipments" Relationship="Self.FK__Equipment__Equip__5EBF139D" FromRole="EquipmentNames" ToRole="Equipment" />
+  </EntityType>
+  <EntityType Name="EquipmentParameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Equipment" Type="Int32" Nullable="false" />
+    <Property Name="Parameter" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipment1" Relationship="Self.FK__Equipment__Equip__6754599E" FromRole="EquipmentParameters" ToRole="Equipment" />
+    <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_EquipmentParameters" FromRole="EquipmentParameters" ToRole="Equipment" />
+    <NavigationProperty Name="Parameter1" Relationship="Self.FK__Equipment__Param__68487DD7" FromRole="EquipmentParameters" ToRole="Parameter" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Organi__5441852A" FromRole="Organizations" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Parameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParameterName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuantitativeIndicator" Type="Int32" Nullable="false" />
+    <Property Name="UnitDimensions" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="EquipmentDimensions" Relationship="Self.FK__Equipment__Param__6D0D32F4" FromRole="Parameter" ToRole="EquipmentDimensions" />
+    <NavigationProperty Name="EquipmentParameters" Relationship="Self.FK__Equipment__Param__68487DD7" FromRole="Parameter" ToRole="EquipmentParameters" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Roles" FromRole="Roles" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Equipment__AreaI__6477ECF3">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="EquipmentArea" Type="Self.EquipmentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentArea">
+        <PropertyRef Name="AreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__AuthDa__5535A963">
+    <End Role="AuthData" Type="Self.AuthData" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AuthData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="AuthData" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Divisi__534D60F1">
+    <End Role="Division" Type="Self.Division" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Division" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employee__Organi__5441852A">
+    <End Role="Organizations" Type="Self.Organization" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizations">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Organization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Emplo__6B24EA82">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="EquipmentDimensions" Type="Self.EquipmentDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentDimensions">
+        <PropertyRef Name="Employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmployeeRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__5EBF139D">
+    <End Role="EquipmentNames" Type="Self.EquipmentName" Multiplicity="1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentNames">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="EquipmentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__6383C8BA">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentArea" Type="Self.EquipmentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentArea">
+        <PropertyRef Name="EquipmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__6754599E">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentParameters" Type="Self.EquipmentParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentParameters">
+        <PropertyRef Name="Equipment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__6C190EBB">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentDimensions" Type="Self.EquipmentDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentDimensions">
+        <PropertyRef Name="Equipment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipment_EquipmentArea">
+    <End Role="EquipmentArea" Type="Self.EquipmentArea" Multiplicity="1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentArea">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="EquipmentArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipment_EquipmentParameters">
+    <End Role="EquipmentParameters" Type="Self.EquipmentParameter" Multiplicity="1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EquipmentParameters">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="EquipmentParameter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Param__6D0D32F4">
+    <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+    <End Role="EquipmentDimensions" Type="Self.EquipmentDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parameter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentDimensions">
+        <PropertyRef Name="Parameter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Param__68487DD7">
+    <End Role="Parameter" Type="Self.Parameter" Multiplicity="1" />
+    <End Role="EquipmentParameters" Type="Self.EquipmentParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parameter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EquipmentParameters">
+        <PropertyRef Name="Parameter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DiagnosisEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="AuthDatas" EntityType="Self.AuthData" />
+    <EntitySet Name="Divisions" EntityType="Self.Division" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+    <EntitySet Name="EquipmentAreas" EntityType="Self.EquipmentArea" />
+    <EntitySet Name="EquipmentDimensions" EntityType="Self.EquipmentDimension" />
+    <EntitySet Name="EquipmentDocuments" EntityType="Self.EquipmentDocument" />
+    <EntitySet Name="EquipmentNames" EntityType="Self.EquipmentName" />
+    <EntitySet Name="EquipmentParameters" EntityType="Self.EquipmentParameter" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="Parameters" EntityType="Self.Parameter" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__Equipment__AreaI__6477ECF3" Association="Self.FK__Equipment__AreaI__6477ECF3">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="EquipmentArea" EntitySet="EquipmentAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__AuthDa__5535A963" Association="Self.FK__Employee__AuthDa__5535A963">
+      <End Role="AuthData" EntitySet="AuthDatas" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Divisi__534D60F1" Association="Self.FK__Employee__Divisi__534D60F1">
+      <End Role="Division" EntitySet="Divisions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employee__Organi__5441852A" Association="Self.FK__Employee__Organi__5441852A">
+      <End Role="Organizations" EntitySet="Organizations" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Emplo__6B24EA82" Association="Self.FK__Equipment__Emplo__6B24EA82">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EquipmentDimensions" EntitySet="EquipmentDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Roles" Association="Self.FK_Employee_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__5EBF139D" Association="Self.FK__Equipment__Equip__5EBF139D">
+      <End Role="EquipmentNames" EntitySet="EquipmentNames" />
+      <End Role="Equipment" EntitySet="Equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__6383C8BA" Association="Self.FK__Equipment__Equip__6383C8BA">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="EquipmentArea" EntitySet="EquipmentAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__6754599E" Association="Self.FK__Equipment__Equip__6754599E">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="EquipmentParameters" EntitySet="EquipmentParameters" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__6C190EBB" Association="Self.FK__Equipment__Equip__6C190EBB">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="EquipmentDimensions" EntitySet="EquipmentDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipment_EquipmentArea" Association="Self.FK_Equipment_EquipmentArea">
+      <End Role="EquipmentArea" EntitySet="EquipmentAreas" />
+      <End Role="Equipment" EntitySet="Equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipment_EquipmentParameters" Association="Self.FK_Equipment_EquipmentParameters">
+      <End Role="EquipmentParameters" EntitySet="EquipmentParameters" />
+      <End Role="Equipment" EntitySet="Equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Param__6D0D32F4" Association="Self.FK__Equipment__Param__6D0D32F4">
+      <End Role="Parameter" EntitySet="Parameters" />
+      <End Role="EquipmentDimensions" EntitySet="EquipmentDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Param__68487DD7" Association="Self.FK__Equipment__Param__68487DD7">
+      <End Role="Parameter" EntitySet="Parameters" />
+      <End Role="EquipmentParameters" EntitySet="EquipmentParameters" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DIAGNOSISModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DIAGNOSISModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
